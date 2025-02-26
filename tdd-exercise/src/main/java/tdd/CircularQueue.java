@@ -13,4 +13,48 @@ package tdd;
  *   - Introduce methods in the interface in order to make the tests pass.
  *   - Refactor
  */
-public interface CircularQueue { }
+public interface CircularQueue {
+
+    /**
+     * Add an element to the queue.
+     *
+     * @param element the element to add.
+     */
+    void add(int element);
+
+    /**
+     * Remove the oldest element from the queue.
+     *
+     * @return the oldest element.
+     */
+    int remove();
+
+    /**
+     * Get the oldest element from the queue.
+     *
+     * @return the oldest element.
+     */
+    int getOldest();
+
+    /**
+     * Get the newest element from the queue.
+     *
+     * @return the newest element.
+     */
+    int getNewest();
+
+    /**
+     * Get the size of the queue.
+     *
+     * @return the size of the queue.
+     */
+    int size();
+
+    /**
+     * Check if the queue is empty.
+     *
+     * @return true if the queue is empty, false otherwise.
+     */
+    boolean isEmpty();
+
+}

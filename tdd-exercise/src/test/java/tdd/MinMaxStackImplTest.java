@@ -39,8 +39,10 @@ class MinMaxStackImplTest {
     public void testPop(){
         minMaxStack.push(TEST_VALUE);
         int poppedValue = minMaxStack.pop();
-        assertTrue(minMaxStack.isEmpty());
-        assertEquals(TEST_VALUE, poppedValue);
+        assertAll(
+                () -> assertTrue(minMaxStack.isEmpty()),
+                () -> assertEquals(TEST_VALUE, poppedValue)
+        );
     }
 
     @Test
@@ -61,7 +63,9 @@ class MinMaxStackImplTest {
 
     @Test
     public void testGetMinAndMaxWithEmptyStack(){
-        assertEquals(Integer.MIN_VALUE, minMaxStack.getMin());
-        assertEquals(Integer.MAX_VALUE, minMaxStack.getMax());
+        assertAll(
+                () -> assertEquals(Integer.MIN_VALUE, minMaxStack.getMin()),
+                () -> assertEquals(Integer.MAX_VALUE, minMaxStack.getMax())
+        );
     }
 }

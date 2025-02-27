@@ -46,8 +46,10 @@ public class SmartDoorLockTest {
     public void testUnlockWithWrongPin() {
         smartDoorLock.lock();
         smartDoorLock.unlock(WRONG_TEST_PIN);
-        assertTrue(smartDoorLock.isLocked());
-        assertNotEquals(0, smartDoorLock.getFailedAttempts());
+        assertAll(
+                () -> assertTrue(smartDoorLock.isLocked()),
+                () -> assertEquals(1, smartDoorLock.getFailedAttempts())
+        );
     }
 
     @Test
@@ -57,18 +59,23 @@ public class SmartDoorLockTest {
         for (int i = 0; i < maxAttempts; i++) {
             smartDoorLock.unlock(WRONG_TEST_PIN);
         }
-        assertTrue(smartDoorLock.isBlocked());
-        assertEquals(maxAttempts, smartDoorLock.getFailedAttempts());
+        assertAll(
+                () -> assertTrue(smartDoorLock.isBlocked()),
+                () -> assertEquals(maxAttempts, smartDoorLock.getFailedAttempts())
+        );
     }
 
     @Test
     public void testResetDoor() {
         smartDoorLock.reset();
-
-        assertFalse(smartDoorLock.isLocked());
-        assertEquals(0, smartDoorLock.getFailedAttempts());
+        assertAll(
+                () -> assertFalse(smartDoorLock.isLocked()),
+                () -> assertEquals(0, smartDoorLock.getFailedAttempts())
+        );
         smartDoorLock.unlock(TEST_PIN);
-        assertNotEquals(0, smartDoorLock.getFailedAttempts());
-        assertFalse(smartDoorLock.isBlocked());
+        assertAll(
+                () -> assertNotEquals(0, smartDoorLock.getFailedAttempts()),
+                () -> assertFalse(smartDoorLock.isBlocked())
+        );
     }
 }

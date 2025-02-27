@@ -4,8 +4,7 @@ import model.CircolarQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The test suite for testing the CircularList implementation
@@ -48,9 +47,11 @@ public class CircularListTest {
         queue.add(3);
         queue.add(4);
         queue.add(5);
-        assertEquals(3, queue.remove());
-        assertEquals(4, queue.remove());
-        assertEquals(5, queue.remove());
+        assertAll(
+                () -> assertEquals(3, queue.remove()),
+                () -> assertEquals(4, queue.remove()),
+                () -> assertEquals(5, queue.remove())
+        );
     }
 
 }

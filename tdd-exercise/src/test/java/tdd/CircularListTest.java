@@ -26,10 +26,9 @@ public class CircularListTest {
 
     @Test
     public void testAddElement() {
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-        queue.add(4);
+        for (int i = 1; i <= 4; i++) {
+            queue.add(i);
+        }
         assertEquals(CAPACITY, queue.size());
     }
 
@@ -42,11 +41,9 @@ public class CircularListTest {
 
     @Test
     public void testRemoveOldestElements() {
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-        queue.add(4);
-        queue.add(5);
+        for (int i = 1; i <= 5; i++) {
+            queue.add(i);
+        }
         assertAll(
                 () -> assertEquals(3, queue.remove()),
                 () -> assertEquals(4, queue.remove()),

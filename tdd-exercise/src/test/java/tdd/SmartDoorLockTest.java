@@ -1,6 +1,6 @@
 package tdd;
 
-import model.SmartDoorLock;
+import model.SmartDoorLockImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +11,11 @@ public class SmartDoorLockTest {
     public static final int TEST_PIN = 1234;
     public static final int WRONG_TEST_PIN = 4321;
 
-    private tdd.SmartDoorLock smartDoorLock;
+    private SmartDoorLock smartDoorLock;
 
     @BeforeEach
     void beforeEach(){
-        smartDoorLock = new SmartDoorLock();
+        smartDoorLock = new SmartDoorLockImpl();
     }
 
     @Test

@@ -1,6 +1,8 @@
 package model;
 
-public class SmartDoorLock implements tdd.SmartDoorLock {
+import tdd.SmartDoorLock;
+
+public class SmartDoorLockImpl implements SmartDoorLock {
 
     private static final int MAX_ATTEMPTS = 3;
     private static final int DEFAULT_PIN = -1;
@@ -10,7 +12,7 @@ public class SmartDoorLock implements tdd.SmartDoorLock {
     private int pin;
     private int failedAttempts;
 
-    public SmartDoorLock() {
+    public SmartDoorLockImpl() {
         this.doorLockedState = false;
     }
 

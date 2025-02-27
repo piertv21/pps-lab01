@@ -1,8 +1,6 @@
 package tdd;
 
 import model.CircolarQueue;
-import model.MinMaxStackImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CircularListTest {
 
+    private static final int CAPACITY = 3;
     CircolarQueue queue;
 
     @BeforeEach
     void beforeEach(){
-        queue = new CircolarQueue();
+        queue = new CircolarQueue(CAPACITY);
     }
 
     @Test
@@ -29,7 +28,10 @@ public class CircularListTest {
     @Test
     public void testAddElement() {
         queue.add(1);
-        assertEquals(1, queue.size());
+        queue.add(2);
+        queue.add(3);
+        queue.add(4);
+        assertEquals(CAPACITY, queue.size());
     }
 
     @Test
@@ -37,6 +39,18 @@ public class CircularListTest {
         queue.add(1);
         queue.remove();
         assertEquals(0, queue.size());
+    }
+
+    @Test
+    public void testRemoveOldestElements() {
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        queue.add(4);
+        queue.add(5);
+        assertEquals(3, queue.remove());
+        assertEquals(4, queue.remove());
+        assertEquals(5, queue.remove());
     }
 
 }

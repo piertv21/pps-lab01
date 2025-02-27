@@ -30,20 +30,6 @@ public interface CircularQueue {
     int remove();
 
     /**
-     * Get the oldest element from the queue.
-     *
-     * @return the oldest element.
-     */
-    int getOldest();
-
-    /**
-     * Get the newest element from the queue.
-     *
-     * @return the newest element.
-     */
-    int getNewest();
-
-    /**
      * Get the size of the queue.
      *
      * @return the size of the queue.

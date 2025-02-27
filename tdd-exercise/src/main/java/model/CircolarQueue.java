@@ -7,45 +7,57 @@ import java.util.List;
 
 public class CircolarQueue implements CircularQueue {
 
-    private static final int CAPACITY = 3;
-    List<Integer> queue;
-    int currentIndex;
+    private static final int INITIAL_INDEX = 0;
 
-    public CircolarQueue() {
+    List<Integer> queue;
+    int capacity;
+    int currentIndex;
+    int headIndex;
+
+    public CircolarQueue(int capacity) {
+        this.capacity = capacity;
         this.queue = new ArrayList<>();
-        this.currentIndex = 0;
+        this.initQueueIndexes();
+    }
+
+    private void initQueueIndexes() {
+        this.currentIndex = INITIAL_INDEX;
+        this.headIndex = INITIAL_INDEX;
     }
 
     @Override
     public void add(int element) {
-        queue.add(element);
-        this.currentIndex = (this.currentIndex + 1) % CAPACITY;
+        if (this.queue.size() < this.capacity) {
+            this.queue.add(element);
+        } else {
+            this.queue.set(this.currentIndex, element);
+            this.headIndex = (this.headIndex + 1) % this.capacity;
+        }
+        this.currentIndex = (this.currentIndex + 1) % this.capacity;
     }
 
     @Override
     public int remove() {
-        if(queue.get(this.currentIndex + 1) != null) {
-            return queue.remove(this.currentIndex + 1);
+        if (this.queue.isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
         }
-    }
-
-    @Override
-    public int getOldest() {
-        return 0;
-    }
-
-    @Override
-    public int getNewest() {
-        return 0;
+        int removedElement = this.queue.get(this.headIndex);
+        this.queue.remove(this.headIndex);
+        if (this.queue.isEmpty()) {
+            this.initQueueIndexes();
+        } else {
+            this.headIndex = this.headIndex % this.queue.size();
+        }
+        return removedElement;
     }
 
     @Override
     public int size() {
-        return queue.size();
+        return this.queue.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return queue.isEmpty();
+        return this.queue.isEmpty();
     }
 }
